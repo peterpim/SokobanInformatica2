@@ -12,40 +12,48 @@ import View.GameWindow;
  */
 public class GameRenderer {
     GameWindow gameWindow;
-    Position position[][] = new Position[38][35];
     
     boolean kindMode = false;
     
+    int rows = 15;
+    int cols = 15;
     int currentLevel = 1;
     int playerScore = 0;
     
+    Position position[][] = new Position[rows][cols];
     String map = null;
     
-    public GameRenderer() { }
+    public GameRenderer() {
+        initPositions();
+        initWorld();
+    }
     
     public void initWorld() {
-        int squares = (gameWindow.getSizeWidth() / gameWindow.getSquareSize()) *
-                (gameWindow.getSizeHeight() / gameWindow.getSquareSize());
+        int squares = rows * cols;
         int x = 0;
         int y = 0;
         for(int i = 0; i < squares; i++) {
-            x += gameWindow.getSquareSize();
-            if(x >= 760) { x = 0; y += gameWindow.getSquareSize(); }
+            x += 20;
+            if(x >= rows * 40) { x = 0; y += 40; }
         }
     }
     
-    public void initPositions() {
-        int rows = gameWindow.getSizeWidth() / gameWindow.getSquareSize();
-        int cols = gameWindow.getSizeHeight() / gameWindow.getSquareSize();
-        
+    public void initPositions() {       
         for(int x = 0; x < rows; x++) {
             for(int y = 0; y < cols; y++) {
-                position[x][y] = new Position(x * gameWindow.getSquareSize(),
-                        y * gameWindow.getSquareSize());
-                position[x][y].setNeighbour(Direction.NORTH, position[x][y + 1]);
-                position[x][y].setNeighbour(Direction.WEST, position[x - 1][y]);
-                position[x][y].setNeighbour(Direction.SOUTH, position[x][y - 1]);
-                position[x][y].setNeighbour(Direction.EAST, position[x + 1][y]);
+                position[x][y] = new Position(x * 40, y * 40);
+                if(y + 1 < cols) {
+                    position[x][y].setNeighbour(Direction.NORTH, position[x][y + 1]);
+                }
+                if(x - 1 >= 0) {
+                    position[x][y].setNeighbour(Direction.WEST, position[x - 1][y]);
+                }
+                if(y - 1 >= 0) {
+                    position[x][y].setNeighbour(Direction.SOUTH, position[x][y - 1]);
+                }
+                if(x + 1 < rows) {
+                    position[x][y].setNeighbour(Direction.EAST, position[x + 1][y]);
+                }
             }
         }
     }

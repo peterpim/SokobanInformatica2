@@ -14,38 +14,38 @@ import javax.swing.JFrame;
  */
 public class Sokoban extends JFrame {
 
-    private static Sokoban game;
+    private static Sokoban sokoban;
     
-    private GameWindow gameWindow;
-    private MenuWindow menuWindow;
-    private GameRenderer gameRenderer;
+    private GameRenderer gameRenderer = null;
+    private GameWindow gameWindow = null;
+    private MenuWindow menuWindow = null;
     
     private int sizeWidth = 850;
-    private int sizeHeight = 700;
+    private int sizeHeight = 630;
     
     public static void main(String[] args) {
-        game = new Sokoban();
+        sokoban = new Sokoban();
     }
     
     public Sokoban() {
-        gameRenderer = new GameRenderer();
-        gameWindow = new GameWindow();
-        menuWindow = new MenuWindow();
-        
-        gameRenderer.setGameWindow(gameWindow);
-        
         setSize(sizeWidth, sizeHeight);
         setLocationRelativeTo(null);
         setTitle("Sokoban");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        setResizable(false);
+        
+        gameRenderer = new GameRenderer();
         
         buildWindows();
     }
     
     public void buildWindows() {
-        gameWindow.setSokoban(game);
-        menuWindow.setSokoban(game);
+        gameWindow = new GameWindow(gameRenderer);
+        menuWindow = new MenuWindow(gameRenderer);
+        
+        gameRenderer.setGameWindow(gameWindow);
+        
         add(gameWindow, BorderLayout.CENTER);
         add(menuWindow, BorderLayout.EAST);
     }

@@ -6,7 +6,6 @@ package View;
 
 import Model.GameRenderer;
 import Model.Position;
-import Model.Sokoban;
 import Object.Box;
 import Object.GameObject;
 import Object.Monster;
@@ -22,19 +21,22 @@ import java.awt.event.KeyListener;
  */
 public class GameWindow extends javax.swing.JPanel
     implements KeyListener {
-    Sokoban sokoban;
+    
+    private GameRenderer gameRenderer;
     
     private int sizeWidth = 760;
-    private int sizeHeight = 700;
+    private int sizeHeight = 610;
     private int squareSize = 20;
     
-    public GameWindow() {
+    public GameWindow(GameRenderer gameRenderer) {
+        this.gameRenderer = gameRenderer;
         setBackground(Color.BLACK);
         setSize(sizeWidth, sizeHeight);  
         addKeyListener(this);
         setFocusable(true);
         
         initComponents();
+        repaint();
     }
     
     @Override
@@ -44,14 +46,13 @@ public class GameWindow extends javax.swing.JPanel
     }
     
     private void draw(Graphics g) {
-        GameRenderer renderer = sokoban.getGameRenderer();
-        for(int x = 0; x < (sizeWidth / squareSize); x++) {
-            for(int y = 0; y < (sizeHeight / squareSize); y++) {
-                Position currentPos = renderer.getPosition(x, y);
+        for(int x = 0; x < 15; x++) {
+            for(int y = 0; y < 15; y++) {
+                Position currentPos = gameRenderer.getPosition(x, y);
                 GameObject gameObject = currentPos.getObject();
                 g.setColor(new Color(100, 100, 200));
                 g.drawRect(currentPos.getPosX(), currentPos.getPosY(),
-                        currentPos.getPosX() + 20, currentPos.getPosY() + 20);
+                        currentPos.getPosX() + 40, currentPos.getPosY() + 40);
                 if(gameObject instanceof Player) {
                     gameObject.draw(g);
                 } else if(gameObject instanceof Monster) {
@@ -63,14 +64,6 @@ public class GameWindow extends javax.swing.JPanel
                 }
             }
         }
-    }
-    
-    public void setSokoban(Sokoban sokoban) {
-        this.sokoban = sokoban;
-    }
-    
-    public Sokoban getSokoban() {
-        return sokoban;
     }
     
     public void setSizeWidth(int sizeWidth) {
@@ -105,11 +98,11 @@ public class GameWindow extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 115, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
