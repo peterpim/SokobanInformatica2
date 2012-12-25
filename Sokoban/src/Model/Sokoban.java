@@ -45,6 +45,8 @@ public class Sokoban extends JFrame {
         menuWindow = new MenuWindow(gameRenderer);
         
         gameRenderer.setGameWindow(gameWindow);
+        gameRenderer.initPositions();
+        gameRenderer.initWorld();
         
         add(gameWindow, BorderLayout.CENTER);
         add(menuWindow, BorderLayout.EAST);

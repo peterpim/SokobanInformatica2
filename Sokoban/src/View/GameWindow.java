@@ -4,6 +4,7 @@
  */
 package View;
 
+import Model.Direction;
 import Model.GameRenderer;
 import Model.Position;
 import Object.Box;
@@ -15,6 +16,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  * @author Peter-Pim
@@ -23,10 +25,12 @@ public class GameWindow extends javax.swing.JPanel
     implements KeyListener {
     
     private GameRenderer gameRenderer;
+    private ArrayList<Player> players;
+    private ArrayList<Monster> monsters;
     
-    private int sizeWidth = 760;
-    private int sizeHeight = 610;
-    private int squareSize = 20;
+    private int sizeWidth = 680;
+    private int sizeHeight = 600;
+    private int squareSize = 40;
     
     public GameWindow(GameRenderer gameRenderer) {
         this.gameRenderer = gameRenderer;
@@ -36,47 +40,33 @@ public class GameWindow extends javax.swing.JPanel
         setFocusable(true);
         
         initComponents();
+        repaint();
     }
-    /*
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-    } */
+        repaint();
+    }
     
-    /*private void draw(Graphics g) {
-        if(g != null) {
-            g.setColor(Color.CYAN);
-            for(int i = 0; i < gameRenderer.getPositionArray().length; i++) {
-                int index1, index2, x, y;
-                index1 = 0;
-                index2 = 0;
-                Position[][] positions = gameRenderer.getPositionArray();
-                x = positions[index1][index2].getPosX();
-                y = positions[index1][index2].getPosY();
-                g.drawRect(x, y, x + 40, y + 40);
-                if(index2 < 14) {
-                    index2 ++;
-                } else {
-                    index2 = 0;
-                    index1++;
-                }
-                System.out.println(x);
-                System.out.println(y);
-            }
-        }
-        /*
-        for(int x = 0; x < 15; x++) {
-            for(int y = 0; y < 15; y++) {
+    private void draw(Graphics g) {
+        int x, y, rows, cols;
+        rows = gameRenderer.getRows();
+        cols = gameRenderer.getCols();
+        for(x = 0; x < rows; x++) {
+            for(y = 0; y < cols; y++) {
                 Position currentPos = gameRenderer.getPosition(x, y);
                 GameObject gameObject = currentPos.getObject();
-                g.setColor(new Color(100, 100, 200));
+                g.setColor(Color.CYAN);
                 g.drawRect(currentPos.getPosX(), currentPos.getPosY(),
-                        currentPos.getPosX() + 40, currentPos.getPosY() + 40);
+                    squareSize, squareSize);
                 if(gameObject instanceof Player) {
                     gameObject.draw(g);
+                    players.add((Player) gameObject);
                 } else if(gameObject instanceof Monster) {
                     gameObject.draw(g);
+                    monsters.add((Monster) gameObject);
                 } else if(gameObject instanceof Box) {
                     gameObject.draw(g);
                 } else if(gameObject instanceof Wall) {
@@ -84,8 +74,7 @@ public class GameWindow extends javax.swing.JPanel
                 }
             }
         }
-        
-    } */
+    }
     
     public void setSizeWidth(int sizeWidth) {
         this.sizeWidth = sizeWidth;
@@ -119,11 +108,11 @@ public class GameWindow extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
+            .addGap(0, 250, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -141,6 +130,23 @@ public class GameWindow extends javax.swing.JPanel
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                players.get(1).move(Direction.NORTH);
+                break;
+            case KeyEvent.VK_LEFT:
+                players.get(1).move(Direction.WEST);
+                break;
+            case KeyEvent.VK_DOWN:
+                players.get(1).move(Direction.SOUTH);
+                break;
+            case KeyEvent.VK_RIGHT:
+                players.get(1).move(Direction.EAST);
+                break;
+            case KeyEvent.VK_F5:
+                gameRenderer.reset();
+                break;
+        }
+        repaint();
     }
 }

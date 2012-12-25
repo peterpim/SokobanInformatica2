@@ -20,12 +20,7 @@ public class Wall extends GameObject {
     @Override
     public void draw(Graphics g) {
         g.setColor(color);
-        g.fillOval(position.getPosX(), position.getPosY(),
+        g.fillRect(position.getPosX(), position.getPosY(),
             gameWindow.getSquareSize(), gameWindow.getSquareSize());
     }
-
-    @Override
-    public boolean move() {
-        return false;
-    }  
 }

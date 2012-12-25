@@ -18,9 +18,4 @@ public class Monster extends GameObject {
         g.fillOval(position.getPosX(), position.getPosY(),
             gameWindow.getSquareSize(), gameWindow.getSquareSize());
     }
-
-    @Override
-    public boolean move() {
-        return false;
-    }   
 }

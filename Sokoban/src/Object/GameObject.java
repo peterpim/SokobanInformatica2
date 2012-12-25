@@ -1,5 +1,6 @@
 package Object;
 
+import Model.Direction;
 import Model.Position;
 import View.GameWindow;
 import java.awt.Color;
@@ -18,31 +19,49 @@ public abstract class GameObject {
         this.position = position;
     }
     
-    public Color getColor() {
-        return color;
-    }
-    
     public void setColor(Color color) {
         this.color = color;
     }
     
-    public GameWindow getGameWindow() {
-        return gameWindow;
+    public Color getColor() {
+      return color;
+    }
+    
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+    
+    public Position getPosition() {
+        return position;
     }
     
     public void setGameWindow(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
     }
+        
+    public GameWindow getGameWindow() {
+        return gameWindow;
+    }
     
     public abstract void draw(Graphics g);
     
-    public abstract boolean move();
+    public void move(Direction direction) {
+        if(checkOutOfField(direction) && checkWallCollision(direction)) {
+            this.position = position.getNeighbour(direction);
+        }
+    }
     
-    public boolean checkOutOfField() {
+    public boolean checkOutOfField(Direction direction) {
+        if(position.getNeighbour(direction) != null) {
+            return true;
+        }
         return false;
     }
     
-    public boolean checkWallCollision() {
+    public boolean checkWallCollision(Direction direction) {
+        if(!(position.getNeighbour(direction).getObject() instanceof Wall)) {
+            return true;
+        }
         return false;
     }
 }
