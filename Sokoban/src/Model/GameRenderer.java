@@ -28,15 +28,7 @@ public class GameRenderer {
         initWorld();
     }
     
-    public void initWorld() {
-        int squares = rows * cols;
-        int x = 0;
-        int y = 0;
-        for(int i = 0; i < squares; i++) {
-            x += 20;
-            if(x >= rows * 40) { x = 0; y += 40; }
-        }
-    }
+    public void initWorld() { }
     
     public void initPositions() {       
         for(int x = 0; x < rows; x++) {
@@ -83,5 +75,9 @@ public class GameRenderer {
     
     public Position getPosition(int row, int col) {
         return position[row][col];
+    }
+    
+    public Position[][] getPositionArray() {
+        return position;
     }
 }

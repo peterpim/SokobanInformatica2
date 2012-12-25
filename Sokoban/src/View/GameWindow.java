@@ -36,16 +36,36 @@ public class GameWindow extends javax.swing.JPanel
         setFocusable(true);
         
         initComponents();
-        repaint();
     }
-    
+    /*
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
-    }
+    } */
     
-    private void draw(Graphics g) {
+    /*private void draw(Graphics g) {
+        if(g != null) {
+            g.setColor(Color.CYAN);
+            for(int i = 0; i < gameRenderer.getPositionArray().length; i++) {
+                int index1, index2, x, y;
+                index1 = 0;
+                index2 = 0;
+                Position[][] positions = gameRenderer.getPositionArray();
+                x = positions[index1][index2].getPosX();
+                y = positions[index1][index2].getPosY();
+                g.drawRect(x, y, x + 40, y + 40);
+                if(index2 < 14) {
+                    index2 ++;
+                } else {
+                    index2 = 0;
+                    index1++;
+                }
+                System.out.println(x);
+                System.out.println(y);
+            }
+        }
+        /*
         for(int x = 0; x < 15; x++) {
             for(int y = 0; y < 15; y++) {
                 Position currentPos = gameRenderer.getPosition(x, y);
@@ -64,7 +84,8 @@ public class GameWindow extends javax.swing.JPanel
                 }
             }
         }
-    }
+        
+    } */
     
     public void setSizeWidth(int sizeWidth) {
         this.sizeWidth = sizeWidth;
