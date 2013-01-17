@@ -55,6 +55,8 @@ public class GameRenderer {
                 } else if(currentItem == 'p') {
                     Player player = new Player(Color.BLUE, position[x][y]);
                     player.setGameWindow(gameWindow);
+                    player.setFocusable(true);
+                    player.requestFocus();
                     position[x][y].setObject(player);
                     x += 1;
                 } else if(currentItem == 'm') {

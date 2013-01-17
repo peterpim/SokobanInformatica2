@@ -28,11 +28,9 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblScore" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtFieldScore" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtFieldCurrentLevel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblCurrentLevel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txtFieldScore" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtFieldCurrentLevel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblCurrentLevel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRestartGame" alignment="0" pref="120" max="32767" attributes="0"/>
                   <Component id="btnRestartLevel" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnQuitGame" alignment="0" max="32767" attributes="0"/>

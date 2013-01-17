@@ -5,11 +5,12 @@ import Model.Position;
 import View.GameWindow;
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JPanel;
 
 /**
  * @author Peter-Pim
  */
-public abstract class GameObject {
+public abstract class GameObject extends JPanel {
     protected Color color;
     protected Position position;
     protected GameWindow gameWindow;
@@ -45,7 +46,7 @@ public abstract class GameObject {
     
     public abstract void draw(Graphics g);
     
-    public void move(Direction direction) {
+    public boolean move(Direction direction) {
         if(!(checkBoxCollision(direction))) {
             if(this instanceof Player) {
                 GameObject currentBox = (Box) position.getNeighbour(direction).getObject();
@@ -54,10 +55,18 @@ public abstract class GameObject {
                     swapPositions(currentBox, direction);
                     swapPositions(this, direction);
                 }
+            // This for the fun. To be removed later.
+            } else if(this instanceof Monster) {
+                return false;
             }
         } else if(checkOutOfField(direction) && checkWallCollision(direction)) {
             swapPositions(this, direction);
-        }
+        // This for the fun. To be removed later.
+        } else {
+            return false;
+        } 
+        gameWindow.repaint();
+        return true;
     }
     
     public boolean checkOutOfField(Direction direction) {

@@ -8,14 +8,11 @@ import Model.GameRenderer;
 import Model.Position;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * @author Peter-Pim
  */
-public class GameWindow extends javax.swing.JPanel
-    implements KeyListener {
+public class GameWindow extends javax.swing.JPanel {
     
     private GameRenderer gameRenderer;
     
@@ -29,9 +26,7 @@ public class GameWindow extends javax.swing.JPanel
 
             setBackground(Color.BLACK);
             setSize(sizeWidth, sizeHeight);
-
-            addKeyListener(this);
-            setFocusable(true);
+            
             initComponents();
         } catch(Exception e) { e.printStackTrace(); }
     }
@@ -126,6 +121,7 @@ public class GameWindow extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
+/*
     @Override
     public void keyTyped(KeyEvent e) { // KeyTyped method is not used.
 
@@ -139,21 +135,21 @@ public class GameWindow extends javax.swing.JPanel
     @Override
     public void keyReleased(KeyEvent e) {
     // Commented code is to be in the Player object. The Player object moves itself.
-    /*
         try {
             switch(e.getKeyCode()) {
                 // Speler zelf laten reageren op de KeyEvent
                 case KeyEvent.VK_UP:
-                    gameObjects.get("player1").move(Direction.NORTH);
+                    System.out.println("ff");
+                    //gameObjects.get("player1").move(Direction.NORTH);
                     break;
                 case KeyEvent.VK_LEFT:
-                    gameObjects.get("player1").move(Direction.WEST);
+                    //gameObjects.get("player1").move(Direction.WEST);
                     break;
                 case KeyEvent.VK_DOWN:
-                    gameObjects.get("player1").move(Direction.SOUTH);
+                    //gameObjects.get("player1").move(Direction.SOUTH);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    gameObjects.get("player1").move(Direction.EAST);
+                    //gameObjects.get("player1").move(Direction.EAST);
                     break;
                 case KeyEvent.VK_F5:
                     gameRenderer.reset();
@@ -167,6 +163,6 @@ public class GameWindow extends javax.swing.JPanel
             gameRenderer.incrementPlayerScore();
             repaint();
         } catch(Exception ex) { ex.printStackTrace(); }
-    */
     }
+*/
 }

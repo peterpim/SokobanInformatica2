@@ -31,6 +31,7 @@ public class MenuWindow extends javax.swing.JPanel {
             setSize(sizeWidth, sizeHeight);  
 
             initComponents();
+            setFocusable(false);
         } catch(Exception e) { e.printStackTrace(); }
     }
 
