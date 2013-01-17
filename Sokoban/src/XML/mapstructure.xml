@@ -1,0 +1,91 @@
+<sokoban>
+    <map>
+        <col1>wwwwwwwwwwwwwwwwwn</col1>
+        <col2>w      b        wn</col2>
+        <col3>w        b   m  wn</col3>
+        <col4>w     bwwww     wn</col4>
+        <col5>w     b    w    wn</col5>
+        <col6>w    b     w    wn</col6>
+        <col7>w   b       w   wn</col7>
+        <col8>w   b       b   wn</col8>
+        <col9>w   w   p   b   wn</col9>
+       <col10>w   w       b   wn</col10>
+       <col11>w   w       w   wn</col11>
+       <col12>w    bb    b    wn</col12>
+       <col13>w      wwww    bwn</col13>
+       <col14>w               wn</col14>
+       <col15>wwwwwwwwwwwwwwwwwn</col15>
+    </map>
+    
+    <map>
+        <col1>wwwwwwwwwwwwwwwwwn</col1>
+        <col2>w               wn</col2>
+        <col3>w               wn</col3>
+        <col4>w               wn</col4>
+        <col5>ww wwwwwwwwwww wwn</col5>
+        <col6>w               wn</col6>
+        <col7>w        p      wn</col7>
+        <col8>w               wn</col8>
+        <col9>wwwww       wwwwwn</col9>
+       <col10>w               wn</col10>
+       <col11>w               wn</col11>
+       <col12>w    wwwwwww    wn</col12>
+       <col13>w b           b wn</col13>
+       <col14>w               wn</col14>
+       <col15>wwwwwwwwwwwwwwwwwn</col15>
+    </map>
+    
+    <map>
+        <col1>wwwwwwwwwwwwwwwwwn</col1>
+        <col2>w               wn</col2>
+        <col3>w               wn</col3>
+        <col4>w               wn</col4>
+        <col5>w               wn</col5>
+        <col6>w               wn</col6>
+        <col7>w               wn</col7>
+        <col8>w               wn</col8>
+        <col9>w               wn</col9>
+       <col10>w               wn</col10>
+       <col11>w               wn</col11>
+       <col12>w               wn</col12>
+       <col13>w               wn</col13>
+       <col14>w               wn</col14>
+       <col15>wwwwwwwwwwwwwwwwwn</col15>
+    </map>
+    
+    <map>
+        <col1>wwwwwwwwwwwwwwwwwn</col1>
+        <col2>w               wn</col2>
+        <col3>w               wn</col3>
+        <col4>w               wn</col4>
+        <col5>w               wn</col5>
+        <col6>w               wn</col6>
+        <col7>w               wn</col7>
+        <col8>w               wn</col8>
+        <col9>w               wn</col9>
+       <col10>w               wn</col10>
+       <col11>w               wn</col11>
+       <col12>w               wn</col12>
+       <col13>w               wn</col13>
+       <col14>w               wn</col14>
+       <col15>wwwwwwwwwwwwwwwwwn</col15>
+    </map>
+    
+    <map>
+        <col1>wwwwwwwwwwwwwwwwwn</col1>
+        <col2>w               wn</col2>
+        <col3>w               wn</col3>
+        <col4>w               wn</col4>
+        <col5>w               wn</col5>
+        <col6>w               wn</col6>
+        <col7>w               wn</col7>
+        <col8>w               wn</col8>
+        <col9>w               wn</col9>
+       <col10>w               wn</col10>
+       <col11>w               wn</col11>
+       <col12>w               wn</col12>
+       <col13>w               wn</col13>
+       <col14>w               wn</col14>
+       <col15>wwwwwwwwwwwwwwwwwn</col15>
+    </map>
+</sokoban>
