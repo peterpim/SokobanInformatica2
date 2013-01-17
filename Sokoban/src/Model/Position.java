@@ -1,6 +1,8 @@
 package Model;
 
 import Object.GameObject;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashMap;
 
 /**
@@ -8,7 +10,7 @@ import java.util.HashMap;
  * @author Peter-Pim
  */
 public class Position {
-    private GameObject object;
+    private GameObject object = null;
     private HashMap<Direction, Position> positionNeighbour;
     
     private int posX;
@@ -42,5 +44,14 @@ public class Position {
     
     public int getPosY() {
         return posY;
+    }
+    
+    public void draw(Graphics g) {
+        if(getObject() != null) {
+            getObject().draw(g);
+        } else {
+            g.setColor(Color.CYAN);
+            g.drawRect(getPosX(), getPosY(), 40, 40);
+        }
     }
 }

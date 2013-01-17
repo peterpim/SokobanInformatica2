@@ -4,19 +4,12 @@
  */
 package View;
 
-import Model.Direction;
 import Model.GameRenderer;
 import Model.Position;
-import Object.Box;
-import Object.GameObject;
-import Object.Monster;
-import Object.Player;
-import Object.Wall;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashMap;
 
 /**
  * @author Peter-Pim
@@ -25,7 +18,6 @@ public class GameWindow extends javax.swing.JPanel
     implements KeyListener {
     
     private GameRenderer gameRenderer;
-    private HashMap<String, GameObject> gameObjects;
     
     private int sizeWidth = 680;
     private int sizeHeight = 600;
@@ -34,7 +26,6 @@ public class GameWindow extends javax.swing.JPanel
     public GameWindow(GameRenderer gameRenderer) {
         try {
             this.gameRenderer = gameRenderer;
-            gameObjects = new HashMap<String, GameObject>();
 
             setBackground(Color.BLACK);
             setSize(sizeWidth, sizeHeight);
@@ -43,6 +34,14 @@ public class GameWindow extends javax.swing.JPanel
             setFocusable(true);
             initComponents();
         } catch(Exception e) { e.printStackTrace(); }
+    }
+    
+    public GameRenderer getGameRenderer() {
+        return gameRenderer;
+    }
+    
+    public void setGameRenderer(GameRenderer gameRenderer) {
+        this.gameRenderer = gameRenderer;
     }
     
     @Override
@@ -61,7 +60,10 @@ public class GameWindow extends javax.swing.JPanel
             for(x = 0; x < rows; x++) {
                 for(y = 0; y < cols; y++) {
                     Position currentPos = gameRenderer.getPosition(x, y);
-                    GameObject gameObject = currentPos.getObject();
+                    currentPos.draw(g);
+            // Commented code is to be in Position itself. Position should be able to draw itself.
+            /*
+                    // Positie moet zichzelf tekenen.
                     g.setColor(Color.CYAN);
                     g.drawRect(currentPos.getPosX(), currentPos.getPosY(),
                         squareSize, squareSize);
@@ -76,6 +78,7 @@ public class GameWindow extends javax.swing.JPanel
                     } else if(gameObject instanceof Wall) {
                         gameObject.draw(g);
                     }
+             */
                 }
             }
         } catch (Exception e) { e.printStackTrace(); }
@@ -135,8 +138,11 @@ public class GameWindow extends javax.swing.JPanel
 
     @Override
     public void keyReleased(KeyEvent e) {
+    // Commented code is to be in the Player object. The Player object moves itself.
+    /*
         try {
             switch(e.getKeyCode()) {
+                // Speler zelf laten reageren op de KeyEvent
                 case KeyEvent.VK_UP:
                     gameObjects.get("player1").move(Direction.NORTH);
                     break;
@@ -161,5 +167,6 @@ public class GameWindow extends javax.swing.JPanel
             gameRenderer.incrementPlayerScore();
             repaint();
         } catch(Exception ex) { ex.printStackTrace(); }
+    */
     }
 }
