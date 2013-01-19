@@ -5,7 +5,6 @@
 package Model;
 
 import Object.Box;
-import Object.GameObject;
 import Object.Monster;
 import Object.Player;
 import Object.Wall;
@@ -43,25 +42,20 @@ public class GameRenderer {
                     x = 0;
                     y += 1;
                 } else if(currentItem == 'w') {
-                    Wall wall = new Wall(Color.DARK_GRAY, position[x][y]);
-                    wall.setGameWindow(gameWindow);
+                    Wall wall = new Wall(Color.DARK_GRAY, position[x][y], gameWindow);
                     position[x][y].setObject(wall);
                     x += 1;
                 } else if(currentItem == 'b') {
-                    Box box = new Box(Color.YELLOW, position[x][y]);
-                    box.setGameWindow(gameWindow);
+                    Box box = new Box(Color.YELLOW, position[x][y], gameWindow);
                     position[x][y].setObject(box);
                     x += 1;
                 } else if(currentItem == 'p') {
-                    Player player = new Player(Color.BLUE, position[x][y]);
-                    player.setGameWindow(gameWindow);
-                    player.setFocusable(true);
-                    player.requestFocus();
+                    Player player = new Player(Color.BLUE, position[x][y], gameWindow);
+                    gameWindow.addPlayer(player);
                     position[x][y].setObject(player);
                     x += 1;
                 } else if(currentItem == 'm') {
-                    Monster monster = new Monster(Color.PINK, position[x][y]);
-                    monster.setGameWindow(gameWindow);
+                    Monster monster = new Monster(Color.PINK, position[x][y], gameWindow);
                     position[x][y].setObject(monster);
                     x += 1;
                 } else if(currentItem == ' ') {

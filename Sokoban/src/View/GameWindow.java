@@ -4,17 +4,23 @@
  */
 package View;
 
+import Model.Direction;
 import Model.GameRenderer;
 import Model.Position;
+import Object.Player;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  * @author Peter-Pim
  */
-public class GameWindow extends javax.swing.JPanel {
+public class GameWindow extends javax.swing.JPanel implements KeyListener {
     
     private GameRenderer gameRenderer;
+    private ArrayList<Player> players = new ArrayList<>();
     
     private int sizeWidth = 680;
     private int sizeHeight = 600;
@@ -26,6 +32,10 @@ public class GameWindow extends javax.swing.JPanel {
 
             setBackground(Color.BLACK);
             setSize(sizeWidth, sizeHeight);
+            
+            setFocusable(true);
+            addKeyListener(this);
+            requestFocus();
             
             initComponents();
         } catch(Exception e) { e.printStackTrace(); }
@@ -56,24 +66,6 @@ public class GameWindow extends javax.swing.JPanel {
                 for(y = 0; y < cols; y++) {
                     Position currentPos = gameRenderer.getPosition(x, y);
                     currentPos.draw(g);
-            // Commented code is to be in Position itself. Position should be able to draw itself.
-            /*
-                    // Positie moet zichzelf tekenen.
-                    g.setColor(Color.CYAN);
-                    g.drawRect(currentPos.getPosX(), currentPos.getPosY(),
-                        squareSize, squareSize);
-                    if(gameObject instanceof Player) {
-                        gameObject.draw(g);
-                        gameObjects.put("player1", gameObject);
-                    } else if(gameObject instanceof Monster) {
-                        gameObject.draw(g);
-                        gameObjects.put("monster1", gameObject);
-                    } else if(gameObject instanceof Box) {
-                        gameObject.draw(g);
-                    } else if(gameObject instanceof Wall) {
-                        gameObject.draw(g);
-                    }
-             */
                 }
             }
         } catch (Exception e) { e.printStackTrace(); }
@@ -102,6 +94,14 @@ public class GameWindow extends javax.swing.JPanel {
     public int getSquareSize() {
         return squareSize;
     }
+    
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+    
+    public Player getPlayer(int value){
+        return players.get(value);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -121,41 +121,35 @@ public class GameWindow extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-/*
     @Override
-    public void keyTyped(KeyEvent e) { // KeyTyped method is not used.
-
-    }
+    public void keyTyped(KeyEvent e) { /* KeyPressed method is not used. */ }
 
     @Override
-    public void keyPressed(KeyEvent e) { // KeyPressed method is not used.
-        
-    }
+    public void keyPressed(KeyEvent e) { /* KeyPressed method is not used. */ }
 
     @Override
     public void keyReleased(KeyEvent e) {
-    // Commented code is to be in the Player object. The Player object moves itself.
         try {
             switch(e.getKeyCode()) {
-                // Speler zelf laten reageren op de KeyEvent
                 case KeyEvent.VK_UP:
-                    System.out.println("ff");
-                    //gameObjects.get("player1").move(Direction.NORTH);
+                    players.get(0).move(Direction.NORTH);
                     break;
                 case KeyEvent.VK_LEFT:
-                    //gameObjects.get("player1").move(Direction.WEST);
+                    players.get(0).move(Direction.WEST);
                     break;
                 case KeyEvent.VK_DOWN:
-                    //gameObjects.get("player1").move(Direction.SOUTH);
+                    players.get(0).move(Direction.SOUTH);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    //gameObjects.get("player1").move(Direction.EAST);
+                    players.get(0).move(Direction.EAST);
                     break;
                 case KeyEvent.VK_F5:
+                    players.clear();
                     gameRenderer.reset();
                     break;
                 case KeyEvent.VK_F6:
                     gameRenderer.incrementCurrentLevel();
+                    players.clear();
                     gameRenderer.reset();
                     break;
   
@@ -164,5 +158,4 @@ public class GameWindow extends javax.swing.JPanel {
             repaint();
         } catch(Exception ex) { ex.printStackTrace(); }
     }
-*/
 }

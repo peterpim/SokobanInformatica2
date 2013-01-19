@@ -5,6 +5,7 @@
 package Object;
 
 import Model.Position;
+import View.GameWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -13,8 +14,8 @@ import java.awt.Graphics;
  * @author Peter-Pim
  */
 public class Wall extends GameObject {
-    public Wall(Color color, Position position) {
-        super(color, position);
+    public Wall(Color color, Position position, GameWindow gameWindow) {
+        super(color, position, gameWindow);
     }
     
     @Override

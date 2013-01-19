@@ -1,6 +1,7 @@
 package Model;
 
 import Object.GameObject;
+import Object.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;

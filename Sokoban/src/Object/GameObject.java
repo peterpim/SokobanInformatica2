@@ -15,9 +15,10 @@ public abstract class GameObject extends JPanel {
     protected Position position;
     protected GameWindow gameWindow;
     
-    public GameObject(Color color, Position position) {
+    public GameObject(Color color, Position position, GameWindow gameWindow) {
         this.color = color;
         this.position = position;
+        this.gameWindow = gameWindow;
     }
     
     public void setColor(Color color) {
@@ -36,14 +37,6 @@ public abstract class GameObject extends JPanel {
         return position;
     }
     
-    public void setGameWindow(GameWindow gameWindow) {
-        this.gameWindow = gameWindow;
-    }
-        
-    public GameWindow getGameWindow() {
-        return gameWindow;
-    }
-    
     public abstract void draw(Graphics g);
     
     public boolean move(Direction direction) {
@@ -55,16 +48,14 @@ public abstract class GameObject extends JPanel {
                     swapPositions(currentBox, direction);
                     swapPositions(this, direction);
                 }
-            // This for the fun. To be removed later.
-            } else if(this instanceof Monster) {
+            } else {
                 return false;
             }
         } else if(checkOutOfField(direction) && checkWallCollision(direction)) {
             swapPositions(this, direction);
-        // This for the fun. To be removed later.
         } else {
             return false;
-        } 
+        }
         gameWindow.repaint();
         return true;
     }
