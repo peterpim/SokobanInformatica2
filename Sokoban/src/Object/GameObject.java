@@ -43,28 +43,20 @@ public abstract class GameObject extends JPanel {
         if(!(checkBoxCollision(direction))) {
             if(this instanceof Player) {
                 GameObject currentBox = (Box) position.getNeighbour(direction).getObject();
-                if(currentBox.checkBoxCollision(direction) && currentBox.checkOutOfField(direction) &&
-                        currentBox.checkWallCollision(direction)) {
+                if(gameWindow.getGameRenderer().isChildMode() && !currentBox.checkBoxCollision(direction)) {
+                    if(currentBox.getPosition().getNeighbour(direction).getObject().move(direction)) {
+                        this.move(direction);
+                    }
+                } else if(currentBox.checkEntityCollision(direction)) {
                     swapPositions(currentBox, direction);
                     swapPositions(this, direction);
                 }
-            } else {
-                return false;
             }
-        } else if(checkOutOfField(direction) && checkWallCollision(direction)) {
+        } else if(checkEntityCollision(direction)) {
             swapPositions(this, direction);
-        } else {
-            return false;
         }
         gameWindow.repaint();
         return true;
-    }
-    
-    public boolean checkOutOfField(Direction direction) {
-        if(position.getNeighbour(direction) != null) {
-            return true;
-        }
-        return false;
     }
     
     public boolean checkBoxCollision(Direction direction) {
@@ -74,11 +66,18 @@ public abstract class GameObject extends JPanel {
         return false;
     }
     
-    public boolean checkWallCollision(Direction direction) {
-        if(!(position.getNeighbour(direction).getObject() instanceof Wall)) {
-            return true;
+    public boolean checkEntityCollision(Direction direction) {
+        if(position.getNeighbour(direction) == null) { return false; }
+        GameObject obj = position.getNeighbour(direction).getObject();
+        System.out.println(obj);
+        if(obj == null) { return true; }
+        String c = obj.getClass().getSimpleName();
+        switch(c) {
+            case "Wall": return false;
+            case "Box": return false;
+            case "Monster": return false;
         }
-        return false;
+        return true;
     }
     
     public void swapPositions(GameObject object, Direction direction) {
