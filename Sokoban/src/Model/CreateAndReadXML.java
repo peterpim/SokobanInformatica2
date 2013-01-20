@@ -24,6 +24,10 @@ public class CreateAndReadXML {
         /*
          * Try-catch block with an attempt to create a new .XML file.
          * The .XML file will be parsed and map data will be inserted.
+         * 
+         * Create a NodeList and fill it with elements from the .XML file.
+         * Where there are elements in the NodeList to be iterated, fill the
+         * map array with String elements for each level.
          */
         try {
             System.out.println("Creating .xml file to write to...");
@@ -57,6 +61,14 @@ public class CreateAndReadXML {
         return true;
     }
     
+    /*
+     * @param colNumber The column number used to retrieve Stringvalues from.
+     * @param mapElement The element of the map we are retrieving from.
+     * Create a NodeList of nodes that are found under the mapElement.
+     * Create a Node that is the be the first item in the list of NodeList.
+     * @return the NodeValue, a String.
+     * 
+     */
     private String getTagValue(String colNumber, Element mapElement) {
         try {
             NodeList colList = mapElement.getElementsByTagName(colNumber).item(0).getChildNodes();

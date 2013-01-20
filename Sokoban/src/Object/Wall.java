@@ -14,10 +14,18 @@ import java.awt.Graphics;
  * @author Peter-Pim
  */
 public class Wall extends GameObject {
+    /*
+     * Constructor of Wall.
+     * Pressume the color, position and gameWindow from it's superclass.
+     */
     public Wall(Color color, Position position, GameWindow gameWindow) {
         super(color, position, gameWindow);
     }
     
+    /*
+     * Draw the object into the gameWindow.
+     * @param g The graphics component we use.
+     */
     @Override
     public void draw(Graphics g) {
         g.setColor(color);

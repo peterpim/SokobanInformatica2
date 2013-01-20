@@ -12,10 +12,22 @@ import javax.swing.border.Border;
 public class MenuWindow extends javax.swing.JPanel {
     private GameRenderer gameRenderer;
     
+    /*
+     * Integer sizeWidth, sizeHeight, score
+     * Define the width and height of the panel that the menuoptions will be in.
+     * Define the score that is to be shown in txtFieldScore.
+     */
     int sizeWidth = 100;
     int sizeHeight = 600;
     int score = 0;
     
+    /*
+     * Construct of MenuWindow.
+     * Initialize the MenuWindow panel.
+     * Create a border around the MenuWindow object so we can see
+     * expiry between the gameWindow and menuWindow panels.
+     * SetFocusable to false so the focus remains on the gameWindow.
+     */
     public MenuWindow(GameRenderer gameRenderer) {
         try {
             this.gameRenderer = gameRenderer;
@@ -83,10 +95,9 @@ public class MenuWindow extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblScore)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtFieldScore, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtFieldCurrentLevel, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblCurrentLevel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txtFieldScore)
+                    .addComponent(txtFieldCurrentLevel)
+                    .addComponent(lblCurrentLevel)
                     .addComponent(btnRestartGame, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(btnRestartLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQuitGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,16 +128,18 @@ public class MenuWindow extends javax.swing.JPanel {
 
         btnRestartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Object[] opties = {"Yes", "No"};
-                int answer = JOptionPane.showOptionDialog(null,
-                    "Are you sure you want to restart the game?",
-                    "Restart Game", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, opties, opties[1]);
-                if(answer == JOptionPane.YES_OPTION) {
-                    gameRenderer.resetCurrentLevel();
-                    gameRenderer.reset();
-                }
-                gameRenderer.getGameWindow().requestFocus();
+                try {
+                    Object[] opties = {"Yes", "No"};
+                    int answer = JOptionPane.showOptionDialog(null,
+                        "Are you sure you want to restart the game?",
+                        "Restart Game", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        null, opties, opties[1]);
+                    if(answer == JOptionPane.YES_OPTION) {
+                        gameRenderer.resetCurrentLevel();
+                        gameRenderer.reset();
+                    }
+                    gameRenderer.getGameWindow().requestFocus();
+                } catch(Exception e) { e.printStackTrace(); }
             }
         });
         btnQuitGame.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +192,7 @@ public class MenuWindow extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFieldCurrentLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCurrentLevelActionPerformed
-        // TODO add your handling code here:
+        // This textfield does nothing, useless method...
     }//GEN-LAST:event_txtFieldCurrentLevelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
