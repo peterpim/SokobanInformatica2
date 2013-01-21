@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * @author Peter-Pim
@@ -159,6 +160,54 @@ public class GameWindow extends javax.swing.JPanel implements KeyListener {
      */
     public Player getPlayer(int value){
         return players.get(value);
+    }
+    
+    /*
+     * emptyPlayers Empty the list of Player objects.
+     */
+    public void emptyPlayers() {
+        players.clear();
+    }
+    
+    /*
+     * Send a message to the Player that he / she lost the game.
+     * @param optie[0] Quit the game.
+     * @param optie[1] Restart the level.
+     */
+    public void gameLose() {
+        try {
+            gameRenderer.destroy();
+            Object[] opties = {"Yes", "No"};
+            int answer = JOptionPane.showOptionDialog(null,
+                "Alas, player. You were caught by the ghost. Do you want to try again?", "Game Over",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, opties, opties[1]);
+            if(answer == JOptionPane.NO_OPTION) {
+                System.exit(0);
+            }
+            gameRenderer.reset();
+            gameRenderer.getGameWindow().requestFocus();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+    
+    /*
+     * Send a message to the Player that he / she won the game.
+     * When the player confirms, start next level.
+     */
+    public void gameWin() {
+        try {
+            gameRenderer.destroy();
+            Object[] opties = {"Continue", "Replay"};
+            int answer = JOptionPane.showOptionDialog(null,
+                "You trapped the ghost and won the level, would you like to replay or continue?", "Game Won",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, opties, opties[1]);
+            if(answer == JOptionPane.YES_OPTION) {
+                gameRenderer.incrementCurrentLevel();
+            }
+            gameRenderer.reset();
+            gameRenderer.getGameWindow().requestFocus();
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @SuppressWarnings("unchecked")

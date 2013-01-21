@@ -125,6 +125,7 @@ public class GameRenderer {
         try {
             destroy();
             resetPlayerScore();
+            gameWindow.emptyPlayers();
             initPositions();
             initWorld();
             gameWindow.repaint();

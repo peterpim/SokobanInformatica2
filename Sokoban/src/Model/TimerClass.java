@@ -2,6 +2,7 @@
 package Model;
 
 import Object.Monster;
+import Object.Player;
 import View.GameWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,12 @@ public class TimerClass implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            Direction dir = pathFinder.findPath(gameWindow.getPlayer(0), monster);
+            if(dir == Direction.NONE) {
+                gameWindow.gameWin();
+            } else if(monster.getPosition().getNeighbour(dir).getObject() instanceof Player) {
+                gameWindow.gameLose();
+            }
             monster.move(pathFinder.findPath(gameWindow.getPlayer(0), monster));
         } catch(Exception exc) { exc.printStackTrace(); }
     }

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[150, 610]"/>
@@ -25,16 +32,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblScore" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFieldScore" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtFieldCurrentLevel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblCurrentLevel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRestartGame" alignment="0" pref="120" max="32767" attributes="0"/>
-                  <Component id="btnRestartLevel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnQuitGame" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnChildmode" alignment="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="btnRestartLevel" pref="120" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblScore" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFieldScore" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtFieldCurrentLevel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblCurrentLevel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnQuitGame" alignment="0" pref="120" max="32767" attributes="0"/>
+                      <Component id="btnChildmode" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnRestartGame" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
@@ -43,10 +52,10 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="btnRestartLevel" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnRestartGame" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="btnRestartLevel" min="-2" pref="42" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnQuitGame" min="-2" pref="42" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -65,14 +74,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnRestartGame">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Restart Game"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRestartGame.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        try {&#xa;            Object[] opties = {&quot;Yes&quot;, &quot;No&quot;};&#xa;            int answer = JOptionPane.showOptionDialog(null,&#xa;                &quot;Are you sure you want to restart the game?&quot;,&#xa;                &quot;Restart Game&quot;, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,&#xa;                    null, opties, opties[1]);&#xa;            if(answer == JOptionPane.YES_OPTION) {&#xa;                gameRenderer.resetCurrentLevel();&#xa;                gameRenderer.reset();&#xa;            }&#xa;            gameRenderer.getGameWindow().requestFocus();&#xa;        } catch(Exception e) { e.printStackTrace(); }&#xa;    }&#xa;});"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="btnQuitGame">
       <Properties>
         <Property name="text" type="java.lang.String" value="Quit Game"/>
@@ -121,12 +122,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldCurrentLevelActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="btnRestartGame">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Restart Game"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRestartGame.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        try {&#xa;            Object[] opties = {&quot;Yes&quot;, &quot;No&quot;};&#xa;            int answer = JOptionPane.showOptionDialog(null,&#xa;                &quot;Are you sure you want to restart the game?&quot;,&#xa;                &quot;Restart Game&quot;, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,&#xa;                    null, opties, opties[1]);&#xa;            if(answer == JOptionPane.YES_OPTION) {&#xa;                gameRenderer.resetCurrentLevel();&#xa;                gameRenderer.reset();&#xa;            }&#xa;            gameRenderer.getGameWindow().requestFocus();&#xa;        } catch(Exception e) { e.printStackTrace(); }&#xa;    }&#xa;});"/>
+      </AuxValues>
+    </Component>
     <Component class="javax.swing.JButton" name="btnRestartLevel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Restart Level"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRestartGame.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        try {&#xa;            Object[] opties = {&quot;Yes&quot;, &quot;No&quot;};&#xa;            int answer = JOptionPane.showOptionDialog(null,&#xa;                &quot;Are you sure you want to restart the game?&quot;,&#xa;                &quot;Restart Game&quot;, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,&#xa;                    null, opties, opties[1]);&#xa;            if(answer == JOptionPane.YES_OPTION) {&#xa;                gameRenderer.resetCurrentLevel();&#xa;                gameRenderer.reset();&#xa;            }&#xa;            gameRenderer.getGameWindow().requestFocus();&#xa;        } catch (Exception e) { e.printStackTrace(); }&#xa;    }&#xa;});"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRestartLevel.addActionListener(new java.awt.event.ActionListener() {&#xa;    public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;        try {&#xa;            Object[] opties = {&quot;Yes&quot;, &quot;No&quot;};&#xa;            int answer = JOptionPane.showOptionDialog(null,&#xa;                &quot;Are you sure you want to restart the game?&quot;,&#xa;                &quot;Restart Game&quot;, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,&#xa;                    null, opties, opties[1]);&#xa;            if(answer == JOptionPane.YES_OPTION) {&#xa;                gameRenderer.reset();&#xa;            }&#xa;            gameRenderer.getGameWindow().requestFocus();&#xa;        } catch(Exception e) { e.printStackTrace(); }&#xa;    }&#xa;});"/>
       </AuxValues>
     </Component>
   </SubComponents>

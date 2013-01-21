@@ -51,19 +51,20 @@ public class MenuWindow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRestartGame = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnQuitGame = new javax.swing.JButton();
         lblScore = new javax.swing.JLabel();
         txtFieldScore = new javax.swing.JTextField();
         btnChildmode = new javax.swing.JButton();
         lblCurrentLevel = new javax.swing.JLabel();
         txtFieldCurrentLevel = new javax.swing.JTextField();
+        btnRestartGame = new javax.swing.JButton();
         btnRestartLevel = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setMaximumSize(new java.awt.Dimension(150, 610));
         setPreferredSize(new java.awt.Dimension(150, 600));
-
-        btnRestartGame.setText("Restart Game");
 
         btnQuitGame.setText("Quit Game");
 
@@ -85,6 +86,8 @@ public class MenuWindow extends javax.swing.JPanel {
             }
         });
 
+        btnRestartGame.setText("Restart Game");
+
         btnRestartLevel.setText("Restart Level");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -93,24 +96,25 @@ public class MenuWindow extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblScore)
-                    .addComponent(txtFieldScore)
-                    .addComponent(txtFieldCurrentLevel)
-                    .addComponent(lblCurrentLevel)
-                    .addComponent(btnRestartGame, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(btnRestartLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuitGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnChildmode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnRestartLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblScore)
+                        .addComponent(txtFieldScore)
+                        .addComponent(txtFieldCurrentLevel)
+                        .addComponent(lblCurrentLevel)
+                        .addComponent(btnQuitGame, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                        .addComponent(btnChildmode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRestartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnRestartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(btnRestartLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRestartLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRestartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnQuitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -126,22 +130,6 @@ public class MenuWindow extends javax.swing.JPanel {
                 .addContainerGap(211, Short.MAX_VALUE))
         );
 
-        btnRestartGame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    Object[] opties = {"Yes", "No"};
-                    int answer = JOptionPane.showOptionDialog(null,
-                        "Are you sure you want to restart the game?",
-                        "Restart Game", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                        null, opties, opties[1]);
-                    if(answer == JOptionPane.YES_OPTION) {
-                        gameRenderer.resetCurrentLevel();
-                        gameRenderer.reset();
-                    }
-                    gameRenderer.getGameWindow().requestFocus();
-                } catch(Exception e) { e.printStackTrace(); }
-            }
-        });
         btnQuitGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -186,7 +174,22 @@ public class MenuWindow extends javax.swing.JPanel {
                         gameRenderer.reset();
                     }
                     gameRenderer.getGameWindow().requestFocus();
-                } catch (Exception e) { e.printStackTrace(); }
+                } catch(Exception e) { e.printStackTrace(); }
+            }
+        });
+        btnRestartLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    Object[] opties = {"Yes", "No"};
+                    int answer = JOptionPane.showOptionDialog(null,
+                        "Are you sure you want to restart the game?",
+                        "Restart Game", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        null, opties, opties[1]);
+                    if(answer == JOptionPane.YES_OPTION) {
+                        gameRenderer.reset();
+                    }
+                    gameRenderer.getGameWindow().requestFocus();
+                } catch(Exception e) { e.printStackTrace(); }
             }
         });
     }// </editor-fold>//GEN-END:initComponents
@@ -200,6 +203,7 @@ public class MenuWindow extends javax.swing.JPanel {
     private javax.swing.JButton btnQuitGame;
     private javax.swing.JButton btnRestartGame;
     private javax.swing.JButton btnRestartLevel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblCurrentLevel;
     private javax.swing.JLabel lblScore;
     private javax.swing.JTextField txtFieldCurrentLevel;
