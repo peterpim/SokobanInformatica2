@@ -13,6 +13,7 @@ import java.awt.Graphics;
  * @author Peter-Pim
  */
 public class GameWindow extends javax.swing.JPanel {
+    Position[][] position;
 
     /**
      * Creates new form GameWindow
@@ -26,15 +27,19 @@ public class GameWindow extends javax.swing.JPanel {
             initComponents();
         } catch(Exception e) { e.printStackTrace(); }
     }
+    
+    public void setPositions(Position[][] position) {
+        this.position = position;
+    }
 
-    public void paintComponent(Graphics g, Position[][] position) {
+    public void paintComponent(Graphics g) {
         try {
             super.paintComponent(g);
-            draw(g, position);
+            draw(g);
         } catch(Exception e) { e.printStackTrace(); }
     }
     
-    private void draw(Graphics g, Position[][] position) {
+    private void draw(Graphics g) {
         try {
             for(int x = 0; x < 17; x++) {
                 for(int y = 0; y < 15; y++) {

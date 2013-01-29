@@ -34,7 +34,7 @@ public class GameRenderer extends JFrame {
             menuWindow = new MenuWindow(manager);
             xml = new CreateAndReadXML();
 
-            setSize(850, 700);
+            setSize(850, 650);
             setLocationRelativeTo(null);
             setTitle("Pacman");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,6 +70,7 @@ public class GameRenderer extends JFrame {
                     }
                 }
             }
+            gameWindow.setPositions(this.position);
         } catch(Exception e) { e.printStackTrace(); }
     }
     
@@ -103,6 +104,7 @@ public class GameRenderer extends JFrame {
                     x += 1;
                 }
             }
+            gameWindow.repaint();
         } catch(Exception e) { e.printStackTrace(); }
     }
     
@@ -122,7 +124,6 @@ public class GameRenderer extends JFrame {
             manager.resetPlayerScore();
             initPositions();
             initWorld();
-            gameWindow.repaint();
         } catch(Exception e) { e.printStackTrace(); }
     }
     

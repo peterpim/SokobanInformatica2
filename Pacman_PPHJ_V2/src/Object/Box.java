@@ -13,7 +13,7 @@ public class Box extends GameObject {
         super(color, position, manager);
     }
 
-    //@Override
+    @Override
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillRect(position.getX(), position.getY(), 40, 40);

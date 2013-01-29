@@ -1,9 +1,10 @@
 
 package Model;
 
-import java.util.HashMap;
 import Object.GameObject;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.util.HashMap;
 
 /**
  * @author Peter-Pim
@@ -34,6 +35,9 @@ public class Position {
     }
     
     public GameObject getObject() {
+        if(gameObject == null) {
+            return null;
+        }
         return gameObject;
     }
     
@@ -50,8 +54,11 @@ public class Position {
     
     public void draw(Graphics g) {
         try {
-            if(getObject() != null) {
-                //gameObject.draw(g);
+            if(getObject() == null) {
+                g.setColor(Color.BLUE);
+                g.drawRect(x, y, 40, 40);
+            } else {
+                getObject().draw(g);
             }
         } catch(Exception e) { e.printStackTrace(); }
     }

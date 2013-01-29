@@ -1,5 +1,6 @@
 package Object;
 
+import Model.Direction;
 import Model.Manager;
 import Model.Position;
 import java.awt.Color;
@@ -20,5 +21,33 @@ public abstract class GameObject extends JPanel {
         this.manager = manager;
     }
     
-    //public abstract void draw(Graphics g);
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+    
+    public Position getPosition() {
+        return position;
+    }
+    
+    public abstract void draw(Graphics g);
+    
+    public boolean move(Direction d) {
+        try {
+            Position neighbourPos = this.position.getNeighbour(d);
+            if(neighbourPos.getObject() == null) {
+                swapPositions(this, d);
+            }
+        } catch(Exception e) { e.printStackTrace(); }
+        return true;
+    }
+    
+    public void swapPositions(GameObject object, Direction direction) {
+        try {
+            Position oldPos = object.getPosition();
+            object.setPosition(object.getPosition().getNeighbour(direction));
+            object.getPosition().setObject(object);
+            oldPos.setObject(null);
+            manager.paint();
+        } catch(Exception e) { e.printStackTrace(); }
+    }
 }

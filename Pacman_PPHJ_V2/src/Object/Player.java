@@ -20,7 +20,7 @@ public class Player extends GameObject implements KeyListener {
         super(color, position, manager);
     }
 
-    //@Override
+    @Override
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(position.getX(), position.getY(), 40, 40);

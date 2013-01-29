@@ -1,4 +1,3 @@
-
 package Model;
 
 /**
@@ -16,12 +15,17 @@ public class Manager {
         this.gameRenderer = gameRenderer;
     }
     
+    public void paint() {
+        gameRenderer.getGameWindow().repaint();
+    }
+    
     public void incrementCurrentLevel() {
         if(currentLevel < 11) {
             currentLevel += 1;
         } else {
             currentLevel = 0;
         }
+        gameRenderer.getMenuWindow().viewLevel(currentLevel);
     }
     
     public int getCurrentLevel() {
@@ -30,10 +34,12 @@ public class Manager {
     
     public void resetCurrentLevel() {
         currentLevel = 0;
+        gameRenderer.getMenuWindow().viewLevel(currentLevel);
     }
     
     public void incrementPlayerScore() {
         playerScore += 1;
+        gameRenderer.getMenuWindow().viewScore(playerScore);
     }
     
     public int getPlayerScore() {
@@ -42,6 +48,7 @@ public class Manager {
     
     public void resetPlayerScore() {
         playerScore = 0;
+        gameRenderer.getMenuWindow().viewScore(playerScore);
     }
     
     public void setChildmode() {
@@ -68,16 +75,15 @@ public class Manager {
         return isPaused;
     }
     
-    public void gameEnd(boolean result) {
-        if(result) {
-            incrementCurrentLevel();
-
-        } else {
-
-        }     
-    }
-    
-    public void doPaint() {
-        gameRenderer.getGameWindow().repaint();
+    public void gameEnd(int result) {
+        switch(result) {
+            case 1: resetCurrentLevel(); gameRenderer.reset(); break;
+            case 2: gameRenderer.reset(); break;
+            case 3: incrementCurrentLevel(); gameRenderer.reset();break;
+            case 4: break;
+            case 5: break;
+            default: throw new IllegalArgumentException("Manager: could not end " +
+                    "game.");
+        }  
     }
 }
