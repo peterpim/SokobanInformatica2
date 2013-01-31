@@ -1,5 +1,6 @@
 package Object;
 
+import Model.Direction;
 import Model.Manager;
 import Model.PathFind;
 import Model.Position;
@@ -30,6 +31,12 @@ public class Monster extends GameObject implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        move(pathFinder.findPathRecursive(position));
+        Direction d = pathFinder.findPathRecursive(position);
+        if(d == Direction.NONE) {
+            manager.gameEnd(5);
+        } else if(this.position.getNeighbour(d).getObject() instanceof Player) {
+            manager.gameEnd(4);
+        }
+        move(d);
     }
 }

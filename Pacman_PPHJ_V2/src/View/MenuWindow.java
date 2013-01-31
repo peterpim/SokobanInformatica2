@@ -120,6 +120,7 @@ public class MenuWindow extends javax.swing.JPanel {
         btnRestartLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
+                    manager.setPaused();
                     Object[] opties = {"Yes", "No"};
                     int answer = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to restart the game?",
@@ -128,6 +129,7 @@ public class MenuWindow extends javax.swing.JPanel {
                     if(answer == JOptionPane.YES_OPTION) {
                         manager.gameEnd(2);
                     }
+                    manager.setPaused();
                 } catch(Exception e) { e.printStackTrace(); }
             }
         });
@@ -141,6 +143,7 @@ public class MenuWindow extends javax.swing.JPanel {
         btnQuitGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
+                    manager.setPaused();
                     Object[] opties = {"Yes", "No"};
                     int answer = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to quit?", "Quit game",
@@ -149,12 +152,14 @@ public class MenuWindow extends javax.swing.JPanel {
                     if(answer == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
+                    manager.setPaused();
                 } catch (Exception e) { e.printStackTrace(); }
             }
         });
         btnRestartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
+                    manager.setPaused();
                     Object[] opties = {"Yes", "No"};
                     int answer = JOptionPane.showOptionDialog(null,
                         "Are you sure you want to restart the game?",
@@ -163,6 +168,7 @@ public class MenuWindow extends javax.swing.JPanel {
                     if(answer == JOptionPane.YES_OPTION) {
                         manager.gameEnd(1);
                     }
+                    manager.setPaused();
                 } catch(Exception e) { e.printStackTrace(); }
             }
         });

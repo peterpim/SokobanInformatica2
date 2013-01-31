@@ -108,7 +108,7 @@ public class GameRenderer extends JFrame {
         } catch(Exception e) { e.printStackTrace(); }
     }
     
-    private void destroy() {
+    public void destroy() {
         try {
             for(int x = 0; x < rows; x++) {
                 for(int y = 0; y < cols; y++) {

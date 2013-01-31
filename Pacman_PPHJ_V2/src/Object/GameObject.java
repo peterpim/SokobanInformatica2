@@ -32,13 +32,35 @@ public abstract class GameObject extends JPanel {
     public abstract void draw(Graphics g);
     
     public boolean move(Direction d) {
-        try {
-            Position neighbourPos = this.position.getNeighbour(d);
-            if(neighbourPos.getObject() == null) {
-                swapPositions(this, d);
-            }
-        } catch(Exception e) { e.printStackTrace(); }
-        return true;
+        if(!manager.getPaused()) {
+            try {
+                Position neighbourPos = this.position.getNeighbour(d);
+                GameObject obj = neighbourPos.getObject();
+                if(obj == null) {
+                    swapPositions(this, d);
+                } else if(obj instanceof Wall) {
+                    return false;
+                }
+                if(this instanceof Player) {
+                    if(obj instanceof Box) {
+                        if(obj.move(d)) {
+                            swapPositions(this, d);
+                        }
+                    }
+                } else if(this instanceof Box) {
+                    if(manager.getChildmode()) {
+                        if(obj instanceof Box) {
+                            if(obj.move(d)) {
+                                swapPositions(this, d);
+                            }
+                        }
+                    }
+                }
+            } catch(Exception e) { e.printStackTrace(); }
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public void swapPositions(GameObject object, Direction direction) {
@@ -47,6 +69,9 @@ public abstract class GameObject extends JPanel {
             object.setPosition(object.getPosition().getNeighbour(direction));
             object.getPosition().setObject(object);
             oldPos.setObject(null);
+            if(this instanceof Player) {
+                manager.incrementPlayerScore();
+            }
             manager.paint();
         } catch(Exception e) { e.printStackTrace(); }
     }

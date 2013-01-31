@@ -1,5 +1,7 @@
 package Model;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author Peter-Pim
  */
@@ -76,14 +78,43 @@ public class Manager {
     }
     
     public void gameEnd(int result) {
-        switch(result) {
-            case 1: resetCurrentLevel(); gameRenderer.reset(); break;
-            case 2: gameRenderer.reset(); break;
-            case 3: incrementCurrentLevel(); gameRenderer.reset();break;
-            case 4: break;
-            case 5: break;
-            default: throw new IllegalArgumentException("Manager: could not end " +
-                    "game.");
-        }  
+        try {
+            switch(result) {
+                case 1: resetCurrentLevel(); gameRenderer.reset(); break;
+                case 2: gameRenderer.reset(); break;
+                case 3: incrementCurrentLevel(); gameRenderer.reset();break;
+                case 4: gameRenderer.destroy(); newGame(1); break;
+                case 5: gameRenderer.destroy(); newGame(2); break;
+                default: throw new IllegalArgumentException("Manager: could not end " +
+                        "game.");
+            }
+        } catch(Exception e) { e.printStackTrace(); }
+    }
+    
+    public void newGame(int result) {
+        try {
+            isPaused = true;
+            String msg = "You were caught by the ghost. Do you want to try again?";
+            Object[] opties = {"Yes", "No"};
+            int answer;
+            if(result == 2) {
+                answer = JOptionPane.showOptionDialog(null,
+                    msg, "Game Lost", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, opties, opties[1]);
+                if(answer == JOptionPane.NO_OPTION) {
+                    System.exit(0);
+                }
+            } else if(result == 1) {
+                msg = "You trapped the ghost and won the level, would you like continue to next level?";
+                answer = JOptionPane.showOptionDialog(null,
+                    msg, "Game Won", JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.INFORMATION_MESSAGE, null, opties, opties[1]);
+                if(answer == JOptionPane.YES_OPTION) {
+                    incrementCurrentLevel();
+                }
+            }
+            gameRenderer.reset();
+            isPaused = false;
+        } catch(Exception e) { e.printStackTrace(); }
     }
 }
